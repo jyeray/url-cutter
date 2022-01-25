@@ -2,7 +2,6 @@ package com.jyeray.urlcutter;
 
 import com.jyeray.urlcutter.actions.CreateShortcut;
 import com.jyeray.urlcutter.domain.ShortcutRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UrlCutterController {
 
-    @Autowired
-    private ShortcutRepository shortcutRepository;
+    private final ShortcutRepository shortcutRepository;
+
+    public UrlCutterController(ShortcutRepository shortcutRepository) {
+        this.shortcutRepository = shortcutRepository;
+    }
 
     @PostMapping("shortcut")
     public ResponseEntity<CreateShortcutResponse> createShortcut(@RequestBody String url) {
