@@ -1,9 +1,7 @@
 package com.jyeray.urlcutter.actions;
 
 import com.jyeray.urlcutter.domain.ShortcutRepository;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Random;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class CreateShortcut {
 
@@ -14,15 +12,13 @@ public class CreateShortcut {
     }
 
     public String execute(String destinationUrl) {
-        String shortcutPath = generateShortcutPath();
+        var shortcutPath = generateShortcutPath();
         shortcutRepository.create(shortcutPath, destinationUrl);
         return shortcutPath;
     }
 
     private String generateShortcutPath() {
-        byte[] array = new byte[3];
-        new Random().nextBytes(array);
-        return new String(array, StandardCharsets.US_ASCII);
+        return RandomStringUtils.random(3, true, true);
     }
 
 }
