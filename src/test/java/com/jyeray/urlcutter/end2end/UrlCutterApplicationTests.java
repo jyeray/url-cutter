@@ -1,4 +1,4 @@
-package com.jyeray.urlcutter;
+package com.jyeray.urlcutter.end2end;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
